@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import greenTriangle from './assets/greenT.png';
 import redTriangle from './assets/redT.png';
+import SystemSelect from '../SystemSelect/SystemSelect';
 
 function App() {
   const [btcprice,setBtcPrice] = useState(0);
@@ -12,6 +13,7 @@ function App() {
 
   async function apiCall(){
     if (system === 'coinlore'){
+      console.log(`Current System ->>>>>> coinlore`)
       previousPrice = btcprice;
       console.log(`Previous -> ${previousPrice}`);
       const response = await axios.get('https://api.coinlore.net/api/ticker/?id=90');
@@ -31,6 +33,7 @@ function App() {
     }
 
     else if(system === 'cryptocompare'){
+      console.log(`Current System ->>>>>> cryptocompare`)
       previousPrice = btcprice;
       console.log(`Previous -> ${previousPrice}`);
       const response = await axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD');
@@ -56,13 +59,18 @@ function App() {
     const timer = setInterval(()=>{
       console.log('call 2');
         apiCall();
-    },8000)
+    },5000)
     
     return () => clearInterval(timer);
   },[btcprice,system]);
 
+  
   return (
     <div>
+      
+      <SystemSelect onChange={setSystem} system={system}/>
+      <br/>
+
       BTC to USD:
       <br/>
       Price: {' '}
