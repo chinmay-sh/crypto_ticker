@@ -20,7 +20,7 @@ function Router(){
             </Typography>
             </Grid>
             <Grid item xs={3} sm={1} md={1}>
-            <Button color="inherit" className="but">Login</Button>
+            <Button color="inherit" href="https://github.com/the-redlord/crypto_ticker" target="_blank">GitHub</Button>
             </Grid>
         </Toolbar>
         </AppBar>
