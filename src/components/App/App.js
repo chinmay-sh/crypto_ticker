@@ -3,6 +3,8 @@ import axios from 'axios';
 import greenTriangle from './assets/greenT.png';
 import redTriangle from './assets/redT.png';
 import SystemSelect from '../SystemSelect/SystemSelect';
+import Router from '../Routes/Routes';
+import {Grid} from '@material-ui/core';
 
 function App() {
   const [btcprice,setBtcPrice] = useState(0);
@@ -59,7 +61,7 @@ function App() {
     const timer = setInterval(()=>{
       console.log('call 2');
         apiCall();
-    },5000)
+    },5000);
     
     return () => clearInterval(timer);
   },[btcprice,system]);
@@ -67,8 +69,18 @@ function App() {
   
   return (
     <div>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Router/>
+        </Grid>
+        <Grid item xs={12}>
+          <SystemSelect onChange={setSystem} system={system}/>
+        </Grid>
+      </Grid>
+
+    <div>
       
-      <SystemSelect onChange={setSystem} system={system}/>
+      
       <br/>
 
       BTC to USD:
@@ -80,6 +92,9 @@ function App() {
       <div>
        Status: {' '} <img src={status === 'green' ? greenTriangle:redTriangle} />
       </div>
+    </div>
+
+    
     </div>
   );
 }
