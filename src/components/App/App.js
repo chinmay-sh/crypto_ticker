@@ -118,16 +118,16 @@ function App() {
   for (var i=0;i<coinDataArray.length-1;i+=2){
     gridList.push(
       <div key={`coin_${i}`}>
-        <Grid container spacing={3}>
-          <Grid item xs={1}></Grid>
-        <Grid item xs={4}>
+        <Grid container spacing={2} xs={12}>
+          <Grid item md={1} sm={4}></Grid>
+        <Grid item md={4} sm={4}>
           <Coin coin={coinDataArray[i].coin} imgUrl={coinImgList[i]} usd={coinDataArray[i].priceUSD} inr={coinDataArray[i].priceINR} cad={coinDataArray[i].priceCAD} statusImg={greenTriangle} /> {/* statusImg={status === 'green' ? greenTriangle:redTriangle}*/}
         </Grid>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={4}>
+        <Grid item md={2} sm={4}></Grid>
+        <Grid item md={4} sm={4}>
           <Coin coin={coinDataArray[i+1].coin} imgUrl={coinImgList[i+1]} usd={coinDataArray[i+1].priceUSD} inr={coinDataArray[i+1].priceINR} cad={coinDataArray[i+1].priceCAD} statusImg={greenTriangle} /> {/* statusImg={status === 'green' ? greenTriangle:redTriangle}*/}
         </Grid>
-        <Grid item xs={1}></Grid>
+        <Grid item md={1} sm={4}></Grid>
         </Grid>
       </div>
     );
@@ -142,7 +142,7 @@ function App() {
       >
     <div>
       
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={12}>
           <Routes/>
         </Grid>
