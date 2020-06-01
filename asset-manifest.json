@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/crypto_ticker/static/css/main.a440dffe.chunk.css",
-    "main.js": "/crypto_ticker/static/js/main.17753d1b.chunk.js",
-    "main.js.map": "/crypto_ticker/static/js/main.17753d1b.chunk.js.map",
+    "main.css": "/crypto_ticker/static/css/main.7bf29248.chunk.css",
+    "main.js": "/crypto_ticker/static/js/main.1312daf7.chunk.js",
+    "main.js.map": "/crypto_ticker/static/js/main.1312daf7.chunk.js.map",
     "runtime-main.js": "/crypto_ticker/static/js/runtime-main.2e4d9c64.js",
     "runtime-main.js.map": "/crypto_ticker/static/js/runtime-main.2e4d9c64.js.map",
-    "static/js/2.ba118e88.chunk.js": "/crypto_ticker/static/js/2.ba118e88.chunk.js",
-    "static/js/2.ba118e88.chunk.js.map": "/crypto_ticker/static/js/2.ba118e88.chunk.js.map",
+    "static/js/2.be2773c3.chunk.js": "/crypto_ticker/static/js/2.be2773c3.chunk.js",
+    "static/js/2.be2773c3.chunk.js.map": "/crypto_ticker/static/js/2.be2773c3.chunk.js.map",
     "index.html": "/crypto_ticker/index.html",
-    "precache-manifest.70bcb745672e57f42fe7254ec12912d0.js": "/crypto_ticker/precache-manifest.70bcb745672e57f42fe7254ec12912d0.js",
+    "precache-manifest.e221441b67a0fae7124ed363d109e565.js": "/crypto_ticker/precache-manifest.e221441b67a0fae7124ed363d109e565.js",
     "service-worker.js": "/crypto_ticker/service-worker.js",
-    "static/css/main.a440dffe.chunk.css.map": "/crypto_ticker/static/css/main.a440dffe.chunk.css.map",
-    "static/js/2.ba118e88.chunk.js.LICENSE.txt": "/crypto_ticker/static/js/2.ba118e88.chunk.js.LICENSE.txt"
+    "static/css/main.7bf29248.chunk.css.map": "/crypto_ticker/static/css/main.7bf29248.chunk.css.map",
+    "static/js/2.be2773c3.chunk.js.LICENSE.txt": "/crypto_ticker/static/js/2.be2773c3.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/crypto_ticker/static/media/logo.d19322d7.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.2e4d9c64.js",
-    "static/js/2.ba118e88.chunk.js",
-    "static/css/main.a440dffe.chunk.css",
-    "static/js/main.17753d1b.chunk.js"
+    "static/js/2.be2773c3.chunk.js",
+    "static/css/main.7bf29248.chunk.css",
+    "static/js/main.1312daf7.chunk.js"
   ]
 }
