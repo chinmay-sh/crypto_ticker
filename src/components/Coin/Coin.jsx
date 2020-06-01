@@ -9,7 +9,7 @@ export default function Coin(props){
                 title={props.coin}
                 style={{margin:"auto 10px auto 10px"}}
             >
-                <img src={`https://chasing-coins.com/api/v1/std/logo/${props.coin}`} height="60px" width="60px"/>
+                <img src={`https://www.cryptocompare.com${props.imgUrl}`} height="60px" width="60px"/>
             </CardMedia>
         <CardContent style={{display:"flex",flexDirection:"column",margin:"1%",width:"60%"}}>
             
