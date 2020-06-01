@@ -1,10 +1,10 @@
 import React from 'react';
-import {AppBar,Toolbar,IconButton,Typography,Button,Grid,SvgIcon} from '@material-ui/core';
+import {AppBar,Toolbar,IconButton,Typography,Button,Grid} from '@material-ui/core';
 import logo from '../../logo.svg';
 import './Routes.css';
 
 
-function Router(){
+function Routes(){
 
     return(
         <Grid container>
@@ -29,4 +29,4 @@ function Router(){
     )
 }
 
-export default Router;
+export default Routes;
