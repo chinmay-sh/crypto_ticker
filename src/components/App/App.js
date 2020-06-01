@@ -13,53 +13,8 @@ function App() {
   const [btcPriceCAD,setBtcPriceCAD] = useState(0);
   const [status,setStatus] = useState('red');
   //const [system,setSystem] = useState('cryptocompare');
-  
+
   var previousPriceUSD = 0;
-  var previousPriceINR = 0;
-  var previousPriceCAD = 0;
-/*
-  async function apiCall(){
-    if (system === 'coinlore'){
-      console.log(`Current System ->>>>>> coinlore`)
-      previousPrice = btcprice;
-      console.log(`Previous -> ${previousPrice}`);
-      const response = await axios.get('https://api.coinlore.net/api/ticker/?id=90');
-      const returnedUSD = response.data[0].price_usd;
-      console.log(`New Response -> ${returnedUSD}`)
-      if(returnedUSD !== btcprice){
-        setBtcPrice(returnedUSD);
-
-        if(returnedUSD > previousPrice){
-          console.log('Set Green')
-          setStatus('green');
-        } else if (returnedUSD < previousPrice){
-          console.log('Set Red')
-          setStatus('red');
-        }
-      }
-    }
-
-    else if(system === 'cryptocompare'){
-      console.log(`Current System ->>>>>> cryptocompare`)
-      previousPrice = btcprice;
-      console.log(`Previous -> ${previousPrice}`);
-      const response = await axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,INR,CAD');
-      const returnedUSD = response.data.USD;
-      console.log(`New Response -> ${returnedUSD}`)
-      if(returnedUSD !== btcprice){
-        setBtcPrice(returnedUSD);
-
-        if(returnedUSD > previousPrice){
-          console.log('Set Green')
-          setStatus('green');
-        } else if (returnedUSD < previousPrice){
-          console.log('Set Red')
-          setStatus('red');
-        }
-      }
-    }
-  }
-*/
 
   async function apiCall(){
     console.log(`Current System ->>>>>> cryptocompare`)
@@ -91,7 +46,7 @@ function App() {
     const timer = setInterval(()=>{
       console.log('call 2');
         apiCall();
-    },5000);
+    },4000);
     
     return () => clearInterval(timer);
   },[btcPriceUSD]);

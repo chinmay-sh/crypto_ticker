@@ -1,7 +1,8 @@
 import React from 'react';
-import {AppBar,Toolbar,IconButton,Typography,Button,Grid} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import {AppBar,Toolbar,IconButton,Typography,Button,Grid,SvgIcon} from '@material-ui/core';
+import logo from '../../logo.svg';
 import './Routes.css';
+
 
 function Router(){
 
@@ -11,7 +12,7 @@ function Router(){
         <Toolbar className="tool">
             <Grid item xs={2} sm={1} md={1}>
             <IconButton edge="start" color="inherit" aria-label="menu">
-                <MenuIcon />
+                <img src={logo} width="40px"/>
             </IconButton>
             </Grid>
             <Grid item xs={7} sm={10} md={10}>
