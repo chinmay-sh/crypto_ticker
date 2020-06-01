@@ -6,76 +6,97 @@ import Routes from '../Routes/Routes';
 import {Grid} from '@material-ui/core';
 import Coin from '../Coin/Coin';
 import './App.css';
+import LoadingOverlay from 'react-loading-overlay';
 
 function App() {
 
-  var coinList = 'BTC,ETH';
+  const [coinList,setCoinList] = useState('');
 
-  var previousPriceList = ([
-    {"coin":"BTC","previousPriceUSD":0},
-    {"coin":"ETH","previousPriceUSD":0},
-  ]);
+  const [previousPriceList,setPreviousPriceList] = useState([]);
 
-  const [coinDataArray,setCoinDataArray] = useState([
-    {"coin":"BTC","priceUSD":10,"priceINR":10,"priceCAD":10}, // TODO: add status green/red to object
-    {"coin":"ETH","priceUSD":20,"priceINR":20,"priceCAD":20}
-  ]);
+  const [coinDataArray,setCoinDataArray] = useState([]);
 
+  const [spinnerActive,setSpinnerActive] = useState(true);
+
+  const[statusArray,setStatusArray] = useState([]);
 
   async function coinListPopulator(){
     const response = await axios.get('https://cors-anywhere.herokuapp.com/https://chasing-coins.com/api/v1/top-coins/20');
-    console.log(Object.values(response.data))
+    //console.log(Object.values(response.data))
     var list = []
+    var coinliststring = ''
     for(var i=0;i<Object.values(response.data).length;i++){
-      console.log(Object.values(response.data)[i].symbol)
-      list.push({"coin":`${Object.values(response.data)[i].symbol}`,"previousPriceUSD":Object.values(response.data)[i].price})
+      //console.log(Object.values(response.data)[i].symbol)
+      if(i === Object.values(response.data).length-1){
+        coinliststring += `${Object.values(response.data)[i].symbol}`
+      } else{
+        coinliststring += `${Object.values(response.data)[i].symbol},`
+      }
+      //list.push({"coin":`${Object.values(response.data)[i].symbol}`,"previousPriceUSD":Object.values(response.data)[i].price})
+      list.push(Object.values(response.data)[i].price)
     }
-    console.log(list)
-    //setCoinList(list)
+
+    setPreviousPriceList(list);
+    setCoinList(coinliststring);
+  }
+
+  async function apiCallWOutPrevList(){
+
   }
 
   async function apiCall(){
     //set previous price of coins for comparison later
-    //console.log(previousPriceList);
+    //console.log(coinList)
     var prevPricelist = []
     for(var i=0;i<previousPriceList.length;i++){
-      //console.log(`Coin: ${Object.values(coinList)[i].coin}, Prev: ${Object.values(coinList)[i].previousPriceUSD}`)
-      prevPricelist.push({"coin":`${Object.values(coinDataArray)[i].coin}`,"previousPriceUSD":Object.values(coinDataArray)[i].priceUSD})
+      //prevPricelist.push({"coin":`${Object.values(coinDataArray)[i].coin}`,"previousPriceUSD":Object.values(coinDataArray)[i].priceUSD})
+      prevPricelist.push(Object.values(coinDataArray)[i].priceUSD)
     }
-    //console.log(prevPricelist)
-    previousPriceList = prevPricelist;
-    
+    setPreviousPriceList(prevPricelist);
+    console.log(previousPriceList)
     const response = await axios.get(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${coinList}&tsyms=USD,INR,CAD`);
     //console.log(response.data);
 
     var coinDataTempList = []
+    var coinStatusTempList=[]
     for(var i=0;i<Object.keys(response.data).length;i++){
-      //console.log(Object.keys(response.data)[i])
-      //console.log(Object.values(response.data)[i])
       coinDataTempList.push({"coin":`${Object.keys(response.data)[i]}`,"priceUSD":Object.values(response.data)[i].USD,"priceINR":Object.values(response.data)[i].INR,"priceCAD":Object.values(response.data)[i].CAD})
-    }
-    setCoinDataArray(coinDataTempList);
-    //console.log(coinDataArray[0]);
+    
+      var returnedUSD = Object.values(response.data)[i].USD;
 
+      
       /*
-      if(returnedUSD !== btcPriceUSD){
-
+      var previousPriceUSD = Object.values(previousPriceList)[i].previousPriceUSD;
+      if(returnedUSD !== previousPriceUSD){
         if(returnedUSD > previousPriceUSD){
-          console.log('Set Green')
-          setStatus('green');
+          coinStatusTempList.push('green')
         } else if (returnedUSD < previousPriceUSD){
-          console.log('Set Red')
-          setStatus('red');
+          coinStatusTempList.push('red')
         }
       }
       */
+    }
+
+    //setStatusArray(coinStatusTempList);
+    
+    
+    setCoinDataArray(coinDataTempList);
+    
+
+     
   }
 
-/*
+
   useEffect(()=>{
     coinListPopulator();
+    apiCall();
+    const time = setInterval(()=>{
+      setSpinnerActive(false);
+    },10000);
+
+    return ()=> clearInterval(time);
   },[]);
-*/
+
   useEffect(()=>{   
     const timer = setInterval(()=>{
       console.log('call 2');
@@ -85,32 +106,47 @@ function App() {
     return () => clearInterval(timer);
     
   },[coinDataArray]);
-/*
-  useEffect(()=>{
-    console.log('call 1');
-    apiCall();
-  },[]);
-*/
+
+  var gridList = [];
+  for (var i=0;i<coinDataArray.length-1;i+=2){
+    gridList.push(
+      <div key={`coin_${i}`}>
+        <Grid container spacing={3}>
+          <Grid item xs={1}></Grid>
+        <Grid item xs={4}>
+          <Coin coin={coinDataArray[i].coin} usd={coinDataArray[i].priceUSD} inr={coinDataArray[i].priceINR} cad={coinDataArray[i].priceCAD} statusImg={greenTriangle} /> {/* statusImg={status === 'green' ? greenTriangle:redTriangle}*/}
+        </Grid>
+        <Grid item xs={2}></Grid>
+        <Grid item xs={4}>
+          <Coin coin={coinDataArray[i+1].coin} usd={coinDataArray[i+1].priceUSD} inr={coinDataArray[i+1].priceINR} cad={coinDataArray[i+1].priceCAD} statusImg={greenTriangle} /> {/* statusImg={status === 'green' ? greenTriangle:redTriangle}*/}
+        </Grid>
+        <Grid item xs={1}></Grid>
+        </Grid>
+      </div>
+    );
+  }
   
   return (
+    <LoadingOverlay
+      active={spinnerActive}
+      spinner
+      fadeSpeed={500}
+      text='Loading coins...'
+      >
     <div>
+      
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Routes/>
         </Grid>
-        
-        <Grid item xs={12} sm={2}></Grid>
-        <Grid item xs={12} sm={3} className="coinClass">
-          <Coin coin={coinDataArray[0].coin} usd={coinDataArray[0].priceUSD} inr={coinDataArray[0].priceINR} cad={coinDataArray[0].priceCAD} statusImg={greenTriangle} /> {/* statusImg={status === 'green' ? greenTriangle:redTriangle}*/}
+        <Grid item xs={12}>
+        {gridList}
         </Grid>
-        <Grid item xs={12} sm={2}></Grid>
-        <Grid item xs={12} sm={3} className="coinClass">
-          <Coin coin={coinDataArray[1].coin} usd={coinDataArray[1].priceUSD} inr={coinDataArray[1].priceINR} cad={coinDataArray[1].priceCAD} statusImg={redTriangle}/>
-        </Grid>
-        <Grid item xs={12} sm={2}></Grid>
       </Grid>
-        
+
     </div>
+
+    </LoadingOverlay>
   );
 }
 
