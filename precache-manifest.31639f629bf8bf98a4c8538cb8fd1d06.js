@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "98fee0b5baee39f0f222dcb856efd98f",
+    "revision": "57369844d40212a5a69018d34a5393b1",
     "url": "/crypto_ticker/index.html"
   },
   {
-    "revision": "2bfc7134fcfefb82459a",
-    "url": "/crypto_ticker/static/css/main.7bf29248.chunk.css"
+    "revision": "cf7003dc4942cb1ef867",
+    "url": "/crypto_ticker/static/css/main.6b3deb71.chunk.css"
   },
   {
-    "revision": "28cac2755fe95249a69b",
-    "url": "/crypto_ticker/static/js/2.be2773c3.chunk.js"
+    "revision": "3f4493b71bf4793286e9",
+    "url": "/crypto_ticker/static/js/2.ef0cd3c3.chunk.js"
   },
   {
     "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/crypto_ticker/static/js/2.be2773c3.chunk.js.LICENSE.txt"
+    "url": "/crypto_ticker/static/js/2.ef0cd3c3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2bfc7134fcfefb82459a",
-    "url": "/crypto_ticker/static/js/main.1312daf7.chunk.js"
+    "revision": "cf7003dc4942cb1ef867",
+    "url": "/crypto_ticker/static/js/main.52a476b7.chunk.js"
   },
   {
     "revision": "f100523a0813028b612c",
