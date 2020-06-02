@@ -112,7 +112,7 @@ function App() {
         </Grid>
         <Grid item md={2} sm={4}></Grid>
         <Grid item md={4} sm={4}>
-          <Coin coin={coinDataArray[i+1].coin} imgUrl={coinImgList[i+1]} usd={coinDataArray[i+1].priceUSD} inr={coinDataArray[i+1].priceINR} cad={coinDataArray[i+1].priceCAD} statusImg={statusArray[i] === 'green' ? greenTriangle:redTriangle} />
+          <Coin coin={coinDataArray[i+1].coin} imgUrl={coinImgList[i+1]} usd={coinDataArray[i+1].priceUSD} inr={coinDataArray[i+1].priceINR} cad={coinDataArray[i+1].priceCAD} statusImg={statusArray[i+1] === 'green' ? greenTriangle:redTriangle} />
         </Grid>
         <Grid item md={1} sm={4}></Grid>
         </Grid>
