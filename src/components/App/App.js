@@ -26,23 +26,26 @@ function App() {
     const response = await axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=20&tsym=USD');
     //console.log(Object.values(response.data)[3][0].CoinInfo.Name)
     
-    var list = []
+    var listprev = []
     var coinliststring = '';
     var coinImg = []
+    var listCoinPreset = []
     for(var i=0;i<Object.values(response.data)[3].length;i++){
       if(i == 0){
         coinliststring += `${Object.values(response.data)[3][i].CoinInfo.Name}`
       } else{
         coinliststring += `,${Object.values(response.data)[3][i].CoinInfo.Name}`
       }
-      list.push({"coin":`${Object.values(response.data)[3][i].CoinInfo.Name}`,"previousPriceUSD":0})
+      listprev.push({"coin":`${Object.values(response.data)[3][i].CoinInfo.Name}`,"previousPriceUSD":0})
+      listCoinPreset.push({"coin":`${Object.values(response.data)[3][i].CoinInfo.Name}`,"priceUSD":0,"priceINR":0,"priceCAD":0})
 
       coinImg.push(Object.values(response.data)[3][i].CoinInfo.ImageUrl)
     }
 
-    setPreviousPriceList(list);
+    setPreviousPriceList(listprev);
     setCoinList(coinliststring);
     setcoinImgList(coinImg);
+    setCoinDataArray(listCoinPreset);
   }
 /*
   async function apiCallWOutPrevList(){
@@ -86,10 +89,7 @@ function App() {
 
     //setStatusArray(coinStatusTempList);
     
-    console.log(coinList)
     setCoinDataArray(coinDataTempList);
-    
-    console.log(coinDataArray.length)
      
   }
 
@@ -99,7 +99,7 @@ function App() {
     apiCall();
     const time = setInterval(()=>{
       setSpinnerActive(false);
-    },5000);
+    },6000);
 
     return ()=> clearInterval(time);
   },[]);
