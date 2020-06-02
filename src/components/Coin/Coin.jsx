@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import {Card,CardContent,Typography,CardActions,Button,CardMedia} from '@material-ui/core';
 
 export default function Coin(props){

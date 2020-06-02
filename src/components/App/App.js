@@ -29,7 +29,7 @@ function App() {
     var coinImg = []
     var listCoinPreset = []
     for(var i=0;i<Object.values(response.data)[3].length;i++){
-      if(i == 0){
+      if(i === 0){
         coinliststring += `${Object.values(response.data)[3][i].CoinInfo.Name}`
       } else{
         coinliststring += `,${Object.values(response.data)[3][i].CoinInfo.Name}`
@@ -95,7 +95,7 @@ function App() {
     const timer = setInterval(()=>{
       console.log('call 2');
         apiCall();
-    },5000);
+    },4000);
     
     return () => clearInterval(timer);
     
