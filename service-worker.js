@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/crypto_ticker/precache-manifest.f93fd2dc36b3dc17de0db4a2d5a4604b.js"
+  "/crypto_ticker/precache-manifest.431d4c539799c313f73a8616f3b6ee2f.js"
 );
 
 self.addEventListener('message', (event) => {
