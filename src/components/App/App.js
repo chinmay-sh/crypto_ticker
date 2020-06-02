@@ -12,7 +12,7 @@ function App() {
 
   const [coinList,setCoinList] = useState('');
 
-  const [previousPriceList,setPreviousPriceList] = useState([]);
+  //const [previousPriceList,setPreviousPriceList] = useState([]);
 
   const [coinImgList,setcoinImgList] = useState([]);
 
@@ -24,9 +24,7 @@ function App() {
 
   async function coinListPopulator(){
     const response = await axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=20&tsym=USD');
-    //console.log(Object.values(response.data)[3][0].CoinInfo.Name)
-    
-    var listprev = []
+    //var listprev = []
     var coinliststring = '';
     var coinImg = []
     var listCoinPreset = []
@@ -36,13 +34,13 @@ function App() {
       } else{
         coinliststring += `,${Object.values(response.data)[3][i].CoinInfo.Name}`
       }
-      listprev.push({"coin":`${Object.values(response.data)[3][i].CoinInfo.Name}`,"previousPriceUSD":0})
+      //listprev.push({"coin":`${Object.values(response.data)[3][i].CoinInfo.Name}`,"previousPriceUSD":0})
       listCoinPreset.push({"coin":`${Object.values(response.data)[3][i].CoinInfo.Name}`,"priceUSD":0,"priceINR":0,"priceCAD":0})
 
       coinImg.push(Object.values(response.data)[3][i].CoinInfo.ImageUrl)
     }
 
-    setPreviousPriceList(listprev);
+    //setPreviousPriceList(listprev);
     setCoinList(coinliststring);
     setcoinImgList(coinImg);
     setCoinDataArray(listCoinPreset);
@@ -50,16 +48,8 @@ function App() {
   
   async function apiCall(){
     //set previous price of coins for comparison later
-    //console.log(coinList)
-    /*
-    var prevPricelist = []
-    for(var i=0;i<previousPriceList.length;i++){
-      //prevPricelist.push({"coin":`${Object.values(coinDataArray)[i].coin}`,"previousPriceUSD":Object.values(coinDataArray)[i].priceUSD})
-      prevPricelist.push(Object.values(coinDataArray)[i].priceUSD)
-    }
-    setPreviousPriceList(prevPricelist);
-    console.log(previousPriceList)
-    */
+
+
     const response = await axios.get(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${coinList}&tsyms=USD,INR,CAD`);
     //console.log(response.data);
 
@@ -69,10 +59,10 @@ function App() {
       coinDataTempList.push({"coin":`${Object.keys(response.data)[i]}`,"priceUSD":Object.values(response.data)[i].USD,"priceINR":Object.values(response.data)[i].INR,"priceCAD":Object.values(response.data)[i].CAD})
     
       var returnedUSD = Object.values(response.data)[i].USD;
-
-      
+      console.log(coinDataArray[i] == undefined)
       /*
-      var previousPriceUSD = Object.values(previousPriceList)[i].previousPriceUSD;
+      var previousPriceUSD = coinDataArray[i].priceUSD;
+
       if(returnedUSD !== previousPriceUSD){
         if(returnedUSD > previousPriceUSD){
           coinStatusTempList.push('green')
@@ -80,10 +70,10 @@ function App() {
           coinStatusTempList.push('red')
         }
       }
-      */
+*/
     }
 
-    //setStatusArray(coinStatusTempList);
+    setStatusArray(coinStatusTempList);
     
     setCoinDataArray(coinDataTempList);
      
@@ -121,7 +111,7 @@ function App() {
         </Grid>
         <Grid item md={2} sm={4}></Grid>
         <Grid item md={4} sm={4}>
-          <Coin coin={coinDataArray[i+1].coin} imgUrl={coinImgList[i+1]} usd={coinDataArray[i+1].priceUSD} inr={coinDataArray[i+1].priceINR} cad={coinDataArray[i+1].priceCAD} statusImg={greenTriangle} /> {/* statusImg={status === 'green' ? greenTriangle:redTriangle}*/}
+          <Coin coin={coinDataArray[i+1].coin} imgUrl={coinImgList[i+1]} usd={coinDataArray[i+1].priceUSD} inr={coinDataArray[i+1].priceINR} cad={coinDataArray[i+1].priceCAD} statusImg={redTriangle} />
         </Grid>
         <Grid item md={1} sm={4}></Grid>
         </Grid>
@@ -136,18 +126,18 @@ function App() {
       fadeSpeed={1000}
       text='Loading coins...'
       >
-    <div>
-      
-      <Grid container spacing={1}>
-        <Grid item xs={12}>
-          <Routes/>
+      <div>
+        
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Routes/>
+          </Grid>
+          <Grid item xs={12}>
+          {gridList}
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-        {gridList}
-        </Grid>
-      </Grid>
 
-    </div>
+      </div>
 
     </LoadingOverlay>
   );
