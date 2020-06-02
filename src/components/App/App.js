@@ -59,18 +59,19 @@ function App() {
       coinDataTempList.push({"coin":`${Object.keys(response.data)[i]}`,"priceUSD":Object.values(response.data)[i].USD,"priceINR":Object.values(response.data)[i].INR,"priceCAD":Object.values(response.data)[i].CAD})
     
       var returnedUSD = Object.values(response.data)[i].USD;
-      console.log(coinDataArray[i] == undefined)
-      /*
-      var previousPriceUSD = coinDataArray[i].priceUSD;
+      
+      if(coinDataArray.length === 20){
+        //console.log(coinDataArray[i].priceUSD)
+        var previousPriceUSD = coinDataArray[i].priceUSD;
 
-      if(returnedUSD !== previousPriceUSD){
-        if(returnedUSD > previousPriceUSD){
-          coinStatusTempList.push('green')
-        } else if (returnedUSD < previousPriceUSD){
-          coinStatusTempList.push('red')
+        if(returnedUSD !== previousPriceUSD){
+          if(returnedUSD > previousPriceUSD){
+            coinStatusTempList.push('green')
+          } else if (returnedUSD < previousPriceUSD){
+            coinStatusTempList.push('red')
+          }
         }
       }
-*/
     }
 
     setStatusArray(coinStatusTempList);
@@ -98,7 +99,7 @@ function App() {
     
     return () => clearInterval(timer);
     
-  },[coinDataArray]);
+  },[coinDataArray,statusArray]);
 
   var gridList = [];
   for (var i=0;i<coinDataArray.length-1;i+=2){
@@ -107,11 +108,11 @@ function App() {
         <Grid container spacing={2} xs={12}>
           <Grid item md={1} sm={4}></Grid>
         <Grid item md={4} sm={4}>
-          <Coin coin={coinDataArray[i].coin} imgUrl={coinImgList[i]} usd={coinDataArray[i].priceUSD} inr={coinDataArray[i].priceINR} cad={coinDataArray[i].priceCAD} statusImg={greenTriangle} /> {/* statusImg={status === 'green' ? greenTriangle:redTriangle}*/}
+          <Coin coin={coinDataArray[i].coin} imgUrl={coinImgList[i]} usd={coinDataArray[i].priceUSD} inr={coinDataArray[i].priceINR} cad={coinDataArray[i].priceCAD} statusImg={statusArray[i] === 'green' ? greenTriangle:redTriangle} /> {/* statusImg={status === 'green' ? greenTriangle:redTriangle}*/}
         </Grid>
         <Grid item md={2} sm={4}></Grid>
         <Grid item md={4} sm={4}>
-          <Coin coin={coinDataArray[i+1].coin} imgUrl={coinImgList[i+1]} usd={coinDataArray[i+1].priceUSD} inr={coinDataArray[i+1].priceINR} cad={coinDataArray[i+1].priceCAD} statusImg={redTriangle} />
+          <Coin coin={coinDataArray[i+1].coin} imgUrl={coinImgList[i+1]} usd={coinDataArray[i+1].priceUSD} inr={coinDataArray[i+1].priceINR} cad={coinDataArray[i+1].priceCAD} statusImg={statusArray[i] === 'green' ? greenTriangle:redTriangle} />
         </Grid>
         <Grid item md={1} sm={4}></Grid>
         </Grid>

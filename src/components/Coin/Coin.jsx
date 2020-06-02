@@ -25,7 +25,7 @@ export default function Coin(props){
                 CAD: {props.cad}
             </Typography>
             <CardActions>
-                <Button size="small" disableElevation="false" href={`https://www.cryptocompare.com/coins/${props.coin}`} target="_blank" color="primary">Learn More</Button>
+                <Button size="small" href={`https://www.cryptocompare.com/coins/${props.coin}`} target="_blank" color="primary">Learn More</Button>
             </CardActions>
         </CardContent>
         <CardMedia
