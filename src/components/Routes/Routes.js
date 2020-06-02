@@ -9,10 +9,10 @@ function Routes(){
     return(
         <Grid container>
         <AppBar position="static">
-        <Toolbar className="tool">
+        <Toolbar >
             <Grid item xs={2} sm={1} md={1}>
             <IconButton edge="start" color="inherit" aria-label="menu">
-                <img src={logo} width="40px"/>
+                <a href="https://the-redlord.github.io/"><img src={logo} width="40px" /></a>
             </IconButton>
             </Grid>
             <Grid item xs={7} sm={10} md={10}>
