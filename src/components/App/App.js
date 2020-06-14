@@ -6,7 +6,8 @@ import Routes from '../Routes/Routes';
 import {Grid} from '@material-ui/core';
 import Coin from '../Coin/Coin';
 import './App.css';
-import LoadingOverlay from 'react-loading-overlay';
+import LoadingScreen from 'react-loading-screen';
+import logo from '../../logo.svg';
 
 function App() {
 
@@ -86,7 +87,7 @@ function App() {
     apiCall();
     const time = setInterval(()=>{
       setSpinnerActive(false);
-    },5000);
+    },4500);
 
     return ()=> clearInterval(time);
   },[]);
@@ -121,13 +122,15 @@ function App() {
   }
   
   return (
-    <LoadingOverlay
-      active={spinnerActive}
-      spinner
-      fadeSpeed={1000}
-      text='Loading coins...'
-      >
-      <div>
+    <LoadingScreen
+    loading={spinnerActive}
+    bgColor='#212121'
+    spinnerColor='#ffd000'
+    textColor='#2fff00'
+    logoSrc={logo}
+    text='Loading coins....'
+  > 
+    <div>
         
         <Grid container spacing={1}>
           <Grid item xs={12}>
@@ -139,8 +142,8 @@ function App() {
         </Grid>
 
       </div>
-
-    </LoadingOverlay>
+  </LoadingScreen>
+      
   );
 }
 

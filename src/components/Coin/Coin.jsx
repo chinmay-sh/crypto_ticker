@@ -12,10 +12,10 @@ export default function Coin(props){
             </CardMedia>
         <CardContent style={{display:"flex",flexDirection:"column",margin:"1%",width:"60%"}}>
             
-            <Typography variant="h5" component="h2">
+            <Typography variant="h5" component="h2" style={{color:"#ffecb3"}}>
                 {props.coin}
             </Typography>
-            <Typography  color="secondary">
+            <Typography>
                 USD: {props.usd}
             </Typography>
             <Typography variant="body2" component="p">
@@ -24,7 +24,7 @@ export default function Coin(props){
                 CAD: {props.cad}
             </Typography>
             <CardActions>
-                <Button size="small" href={`https://www.cryptocompare.com/coins/${props.coin}`} target="_blank" color="primary">Learn More</Button>
+                <Button size="small" href={`https://www.cryptocompare.com/coins/${props.coin}`} target="_blank" color="secondary" style={{color: "#FFF",backgroundColor:"#0097a7"}}>Learn More</Button>
             </CardActions>
         </CardContent>
         <CardMedia
