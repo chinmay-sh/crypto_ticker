@@ -1,6 +1,6 @@
-# Crypto Ticker :rocket: [![gh-pages](https://img.shields.io/badge/gh--pages-deployed-blue?logo=github)](https://the-redlord.github.io/crypto_ticker/)
+# Crypto Ticker :rocket: [![firebase](https://img.shields.io/badge/firebase-deployed-FFCA28?logo=firebase)](https://cryptrack.web.app/)
 
-Deployed to GitHub Pages : https://the-redlord.github.io/crypto_ticker/
+Old version : https://the-redlord.github.io/crypto_ticker/
 
 A Simple Crypto Ticker built using ReactJS.
 
