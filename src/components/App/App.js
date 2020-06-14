@@ -90,8 +90,8 @@ function App() {
     coinListPopulator();
     apiCall();
     // const time = setInterval(()=>{
-      
-    // },500);
+    //   setSpinnerActive(false);
+    // }, 5000);
 
     // return ()=> clearInterval(time);
   },[]);
@@ -110,17 +110,19 @@ function App() {
   for (var i=0;i<coinDataArray.length-1;i+=2){
     gridList.push(
       <div key={`coin_${i}`}>
-        <Grid container spacing={2} xs={12}>
-          <Grid item md={1} sm={4}></Grid>
-        <Grid item md={4} sm={4}>
+        
+        <Grid container xs={12}>
+          <Grid item md={1} sm={12} lg={1} xs={12}></Grid>
+        <Grid item md={4} sm={12} lg={4} xs={12}>
           <Coin coin={coinDataArray[i].coin} imgUrl={coinImgList[i]} usd={coinDataArray[i].priceUSD} inr={coinDataArray[i].priceINR} cad={coinDataArray[i].priceCAD} statusImg={statusArray[i] === 'green' ? greenTriangle:redTriangle} /> {/* statusImg={status === 'green' ? greenTriangle:redTriangle}*/}
         </Grid>
-        <Grid item md={2} sm={4}></Grid>
-        <Grid item md={4} sm={4}>
+        <Grid item md={2} sm={12} lg={2} xs={12}><br/></Grid>
+        <Grid item md={4} sm={12} lg={4} xs={12}>
           <Coin coin={coinDataArray[i+1].coin} imgUrl={coinImgList[i+1]} usd={coinDataArray[i+1].priceUSD} inr={coinDataArray[i+1].priceINR} cad={coinDataArray[i+1].priceCAD} statusImg={statusArray[i+1] === 'green' ? greenTriangle:redTriangle} />
         </Grid>
-        <Grid item md={1} sm={4}></Grid>
+        <Grid item md={1} sm={12} lg={1} xs={12}></Grid>
         </Grid>
+        <br/>
       </div>
     );
   }
