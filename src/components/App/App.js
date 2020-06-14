@@ -78,6 +78,10 @@ function App() {
     setStatusArray(coinStatusTempList);
     
     setCoinDataArray(coinDataTempList);
+
+    if(coinDataArray.length === 20){
+      setSpinnerActive(false);
+    }
      
   }
 
@@ -85,11 +89,11 @@ function App() {
   useEffect(()=>{
     coinListPopulator();
     apiCall();
-    const time = setInterval(()=>{
-      setSpinnerActive(false);
-    },4500);
+    // const time = setInterval(()=>{
+      
+    // },500);
 
-    return ()=> clearInterval(time);
+    // return ()=> clearInterval(time);
   },[]);
 
   useEffect(()=>{   
