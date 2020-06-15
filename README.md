@@ -14,6 +14,7 @@ A Simple Crypto Ticker built using ReactJS.
 
 * NodeJS
 * npm
+* ReactJS
 
 ## Deployment
 
@@ -21,8 +22,9 @@ Deploy to your server to run the app.
 
 ## Built With
 
-* NodeJS
 * ReactJS
+* Cryptocompare API
+* material-ui
 
 ## Authors
 
