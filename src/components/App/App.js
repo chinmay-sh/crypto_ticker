@@ -26,19 +26,23 @@ function App() {
   async function coinListPopulator(){
     const response = await axios.get('https://min-api.cryptocompare.com/data/top/totalvolfull?limit=20&tsym=USD');
     //var listprev = []
+    // console.log(`Coin List: ${(response.data.Data[0]).CoinInfo.Name}`)
     var coinliststring = '';
     var coinImg = []
     var listCoinPreset = []
-    for(var i=0;i<Object.values(response.data)[3].length;i++){
+    for(var i=0;i<Object.values(response.data.Data).length;i++){
+
+      console.log(`Coin ${i}: ${(response.data.Data[i]).CoinInfo.Name}`)
+
       if(i === 0){
-        coinliststring += `${Object.values(response.data)[3][i].CoinInfo.Name}`
+        coinliststring += `${Object.values(response.data.Data)[i].CoinInfo.Name}`
       } else{
-        coinliststring += `,${Object.values(response.data)[3][i].CoinInfo.Name}`
+        coinliststring += `,${Object.values(response.data.Data)[i].CoinInfo.Name}`
       }
       //listprev.push({"coin":`${Object.values(response.data)[3][i].CoinInfo.Name}`,"previousPriceUSD":0})
-      listCoinPreset.push({"coin":`${Object.values(response.data)[3][i].CoinInfo.Name}`,"priceUSD":0,"priceINR":0,"priceCAD":0})
+      listCoinPreset.push({"coin":`${Object.values(response.data.Data)[i].CoinInfo.Name}`,"priceUSD":0,"priceINR":0,"priceCAD":0})
 
-      coinImg.push(Object.values(response.data)[3][i].CoinInfo.ImageUrl)
+      coinImg.push(Object.values(response.data.Data)[i].CoinInfo.ImageUrl)
     }
 
     //setPreviousPriceList(listprev);
